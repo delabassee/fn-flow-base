@@ -1,2 +1,22 @@
-# fn-flow-base
-Barebone Fn Flow project
+Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for details.
+
+
+* Start Fn
+ 
+```fn start```   
+
+* Start the Flow Server and the UI
+
+```./flow_setup.sh``` 
+
+* Deploy your Flow function
+
+```fn deploy --local --app myapp simpleflow``` 
+
+* Configure your app to talk to the Flow server
+
+```fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"```
+
+* Invoke the Flow function
+
+```echo 2 | fn call myapp /simpleflow```
