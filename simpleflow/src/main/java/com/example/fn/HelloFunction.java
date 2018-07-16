@@ -1,17 +1,21 @@
 package com.example.fn;
 
-import com.fnproject.fn.api.flow.Flow;
-import com.fnproject.fn.api.flow.Flows;
+import com.fnproject.fn.api.flow.*;
+
+import static com.fnproject.fn.api.Headers.emptyHeaders;
+import static com.fnproject.fn.api.flow.HttpMethod.POST;
+
 
 public class HelloFunction {
 
-    public String handleRequest(int x) {
+    public String handleRequest(String input) {
 
-	Flow fl = Flows.currentFlow();
+        Flow flow = Flows.currentFlow();
 
-	return fl.completedValue(x)
-            .thenApply( i -> i*2 )
-            .thenApply( i -> "Your number is " + i )
-            .get();
+        FlowFuture<byte[]> stage = flow.invokeFunction( "./duke", POST,
+                emptyHeaders(), input.getBytes() )
+                .thenApply(HttpResponse::getBodyAsBytes);
+
+        return new String(stage.get());
     }
 }
