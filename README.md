@@ -17,10 +17,11 @@ Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://git
 
 ```fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"```
 
-* Create a function that will be invoked from the Flow function
+* Create and deploy a function that will be invoked from the Flow function
 
-```fn init runtime java duke```
+```fn init --runtime java duke```
+```fn deploy --local --app myapp duke``` 
 
 * Invoke the Flow function
 
-```echo "John" | fn call myapp /simpleflow```
+```echo -n "John" | fn call myapp /simpleflow```

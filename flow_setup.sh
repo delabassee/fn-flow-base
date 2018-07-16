@@ -34,7 +34,7 @@ function setupFn {
 	   echo -e "fnproject/flow:ui\n┗> $FLOWUI_CONTAINER\n"
 
    echo -e "Make sure to config your app to talk to the Flow server."
-   echo -e "┗> fn config app my_app COMPLETER_BASE_URL "\""http://$FLOWSERVER_IP:8081"\""" 
+   echo -e "┗> fn config app myapp COMPLETER_BASE_URL "\""http://$FLOWSERVER_IP:8081"\""" 
 
 }
 
