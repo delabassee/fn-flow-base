@@ -19,8 +19,10 @@ Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://git
 
 * Create and deploy a function that will be invoked from the Flow function
 
-```fn init --runtime java duke```
-```fn deploy --local --app myapp duke``` 
+```
+fn init --runtime java duke
+fn deploy --local --app myapp duke
+``` 
 
 * Invoke the Flow function
 
