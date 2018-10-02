@@ -1,6 +1,9 @@
 Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for details.
 
 
+Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for details.
+
+
 * Start Fn
  
 ```fn start```   
@@ -8,6 +11,19 @@ Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://git
 * Start the Flow Server and the UI
 
 ```./flow_setup.sh``` 
+
+* Create and deploy a function that will be invoked from the Flow function
+
+```
+fn init --runtime java duke
+fn deploy --local --app myapp duke
+``` 
+
+* Update the Flow function with the FunctionId of the invoked function
+
+```
+fn inspect function myapp duke
+```
 
 * Deploy your Flow function
 
@@ -17,12 +33,6 @@ Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://git
 
 ```fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"```
 
-* Create and deploy a function that will be invoked from the Flow function
-
-```
-fn init --runtime java duke
-fn deploy --local --app myapp duke
-``` 
 
 * Invoke the Flow function
 
