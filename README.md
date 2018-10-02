@@ -26,4 +26,4 @@ fn deploy --local --app myapp duke
 
 * Invoke the Flow function
 
-```echo -n "John" | fn call myapp /simpleflow```
+```echo -n "John" | fn invoke myapp simpleflow```

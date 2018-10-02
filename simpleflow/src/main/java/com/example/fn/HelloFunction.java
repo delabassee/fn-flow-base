@@ -12,7 +12,11 @@ public class HelloFunction {
 
         Flow flow = Flows.currentFlow();
 
-        FlowFuture<byte[]> stage = flow.invokeFunction( "./duke", POST,
+        // invokeFunction  now takes an Fn Function ID (opaque string) rather than `app/path`
+        // fn inspect fn app invokedFunction
+
+        //FlowFuture<byte[]> stage = flow.invokeFunction( "./duke", POST,
+		FlowFuture<byte[]> stage = flow.invokeFunction( "...functionId...", POST,
                 emptyHeaders(), input.getBytes() )
                 .thenApply(HttpResponse::getBodyAsBytes);
 
