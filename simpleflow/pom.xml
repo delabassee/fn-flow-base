@@ -31,6 +31,12 @@
             <version>${fdk.version}</version>
         </dependency>
         <dependency>
+             <groupId>com.fnproject.fn</groupId>
+             <artifactId>flow-runtime</artifactId>
+             <version>${fdk.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.fnproject.fn</groupId>
             <artifactId>testing</artifactId>
             <version>${fdk.version}</version>
