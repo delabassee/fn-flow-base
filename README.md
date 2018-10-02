@@ -1,7 +1,6 @@
 Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for the concepts. Note that there has been some changes since this tutorial has been written.
-
-* Prereq
-Recent FDK, Fn Server and Flow Server.
+ 
+* Pre-reqs: recent FDK (1.69+), recent Fn Server and recent Flow Server.
 
 * Start Fn
  
