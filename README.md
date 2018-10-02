@@ -1,12 +1,13 @@
-Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for details.
+Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://github.com/fnproject/tutorials/tree/master/Flow101) for the concepts. Note that there has been some changes since this tutorial has been written.
 
-
+* Prereq
+Recent FDK, Fn Server and Flow Server.
 
 * Start Fn
  
 ```fn start```   
 
-* Start the Flow Server and the UI
+* Start the Flow Server and the UI (optional).
 
 ```./flow_setup.sh``` 
 
