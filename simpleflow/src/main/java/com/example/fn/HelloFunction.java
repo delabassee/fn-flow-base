@@ -1,12 +1,15 @@
 package com.example.fn;
 
 import com.fnproject.fn.api.flow.*;
+import com.fnproject.fn.runtime.flow.FlowFeature;
+import com.fnproject.fn.api.FnFeature;
 
 import static com.fnproject.fn.api.Headers.emptyHeaders;
 import static com.fnproject.fn.api.flow.HttpMethod.POST;
 
 
-public class HelloFunction {
+@FnFeature(FlowFeature.class)
+public class SimpleFlowFunction {
 
     public String handleRequest(String input) {
 
