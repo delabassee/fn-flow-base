@@ -24,6 +24,20 @@ fn deploy --local --app myapp duke
 fn inspect function myapp duke
 ```
 
+```json
+{
+	"annotations": {
+		"fnproject.io/fn/invokeEndpoint": "http://localhost:8080/invoke/01CQY2SYX7NG8G00GZJ0000002"
+	},
+	"app_id": "01CQY2SYWCNG8G00GZJ0000001",
+	"created_at": "2018-09-21T12:48:51.111Z",
+	"format": "http-stream",
+	"id": "01CQY2SYX7NG8G00GZJ0000002",
+	"idle_timeout": 30,
+	...
+}
+```
+
 * Deploy and invoke the Flow function.
 
 ```
