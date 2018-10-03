@@ -26,5 +26,7 @@ fn inspect function myapp duke
 
 * Deploy and invoke the Flow function.
 
-```fn deploy --local --app myapp simpleflow
-echo -n "John" | fn invoke myapp simpleflow```
+```
+fn deploy --local --app myapp simpleflow
+echo -n "John" | fn invoke myapp simpleflow
+```
