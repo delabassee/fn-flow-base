@@ -9,6 +9,8 @@ Barebone project to kick-start Fn Flow demo. See [Flow 101 tutorial](https://git
 
 ```./flow_setup.sh``` 
 
+This script will also set the COMPLETER_BASE_URL for the _"myapp"_ App via `fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"`
+
 * Create and deploy a function that will be invoked from the Flow function
 
 ```
@@ -16,7 +18,7 @@ fn init --runtime java duke
 fn deploy --local --app myapp duke
 ``` 
 
-* Update the Flow function with the FunctionId of the invoked function
+* Update the Flow (invoking) function with the FunctionId of the invoked function
 
 ```
 fn inspect function myapp duke
@@ -25,11 +27,6 @@ fn inspect function myapp duke
 * Deploy your Flow function
 
 ```fn deploy --local --app myapp simpleflow``` 
-
-* Configure your app to talk to the Flow server
-
-```fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"```
-
 
 * Invoke the Flow function
 
