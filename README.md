@@ -18,7 +18,7 @@ fn init --runtime java duke
 fn deploy --local --app myapp duke
 ``` 
 
-* Update the Flow (invoking) function with the FunctionId of the invoked function.
+* Get the FunctionId of the invoked function suing the CLI and [update the Flow (invoking) function](https://github.com/delabassee/fn-flow-base/blob/becac483f0a8aa75cbd22b74f18893217b069926/simpleflow/src/main/java/com/example/fn/HelloFunction.java#L17-L22) accordingly.
 
 ```
 fn inspect function myapp duke
