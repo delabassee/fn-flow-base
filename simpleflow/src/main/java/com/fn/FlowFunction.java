@@ -1,4 +1,4 @@
-package com.example.fn;
+package com.fn;
 
 import com.fnproject.fn.api.flow.*;
 import com.fnproject.fn.runtime.flow.FlowFeature;
@@ -8,7 +8,7 @@ import static com.fnproject.fn.api.Headers.emptyHeaders;
 import static com.fnproject.fn.api.flow.HttpMethod.POST;
 
 @FnFeature(FlowFeature.class)
-public class HelloFunction {
+public class FlowFunction {
 
     public String handleRequest(String input) {
 
