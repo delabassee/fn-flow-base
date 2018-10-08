@@ -15,7 +15,7 @@ public class FlowFunction {
         // invokeFunction now takes an Fn Function ID of the func to invoke rather than `app/path`
         // `fn inspect function appName fnName`
 
-		final String funcA = "";
+		final String funcA = "01CSAFATDENG8G00GZJ0000002";
 
         Flow flow = Flows.currentFlow();
 

@@ -2,6 +2,8 @@
 
 echo -e "Fn Flow setup\n-------------"
 
+#fn start -log-level=debug
+
 countflow () {
    docker ps | grep fnproject/flow | wc -l
 }
@@ -13,6 +15,7 @@ function setupFn {
    docker run --rm -d \
       -p 8081:8081 \
       -e API_URL="http://$FNSERVER_IP:8080/invoke" \
+      -e LOG_LEVEL=debug \
       -e no_proxy=$FNSERVER_IP \
       --name flowserver \
       fnproject/flow:latest

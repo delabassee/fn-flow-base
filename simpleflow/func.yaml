@@ -5,7 +5,7 @@ runtime: java
 build_image: fnproject/fn-java-fdk-build:jdk9-1.0.70
 run_image: fnproject/fn-java-fdk:jdk9-1.0.70
 cmd: com.example.fn.HelloFunction::handleRequest
-format: http
+format: http-stream
 triggers:
 - name: simpleflow
   type: http
