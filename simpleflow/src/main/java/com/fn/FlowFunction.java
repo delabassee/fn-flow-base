@@ -12,10 +12,7 @@ public class FlowFunction {
 
     public String handleRequest(String input) {
 
-        // invokeFunction now takes an Fn Function ID of the func to invoke rather than `app/path`
-        // `fn inspect function appName fnName`
-
-		final String funcA = "01CSAFATDENG8G00GZJ0000002";
+		final String funcA = "";
 
         Flow flow = Flows.currentFlow();
 
