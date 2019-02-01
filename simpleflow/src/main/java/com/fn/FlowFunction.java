@@ -4,6 +4,8 @@ import com.fnproject.fn.api.flow.*;
 import com.fnproject.fn.runtime.flow.FlowFeature;
 import com.fnproject.fn.api.FnFeature;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,9 +14,9 @@ import static com.fnproject.fn.api.Headers.emptyHeaders;
 import static com.fnproject.fn.api.flow.HttpMethod.POST;
 
 @FnFeature(FlowFeature.class)
-public class FlowFunction {
+public class FlowFunction implements Serializable{
 
-    public String handleRequestSimple(String input) {
+    public String handleSimpleInvocation(String input) {
 
 		final String funcA = "01D2MWS1E1NG8G00GZJ0000001";
 
@@ -28,15 +30,14 @@ public class FlowFunction {
     }
 
 
-    public String handleRequest(String input) {
+    public String handleParallelInvocation(String input) {
 
         final String funcA = "01D2MWS1E1NG8G00GZJ0000001";
-
 
         Flow flow = Flows.currentFlow();
 
         FlowFuture<byte[]> stageA =
-                flow.invokeFunction(funcA, POST, emptyHeaders(), 6000 )
+                flow.invokeFunction(funcA, POST, emptyHeaders(), 3000 )
                         .thenApply(HttpResponse::getBodyAsBytes);
 
         FlowFuture<byte[]> stageB =
@@ -47,16 +48,28 @@ public class FlowFunction {
                 flow.invokeFunction(funcA, POST, emptyHeaders(), 1000 )
                         .thenApply(HttpResponse::getBodyAsBytes);
 
-        List<FlowFuture<byte[]>> listFlows = allResults(stageA, stageB, stageC).get();
+        FlowFuture<byte[]> stageD =
+                flow.invokeFunction(funcA, POST, emptyHeaders(), 500 )
+                        .thenApply(HttpResponse::getBodyAsBytes);
+
+
+        List<FlowFuture<byte[]>> listFlows = allResults(stageA, stageB, stageC, stageD).get();
 
         listFlows.forEach(flowFuture -> {
-            System.out.println(" flowFuture -> " + flowFuture.get());
+            flowFuture.whenComplete((bytes, throwable) -> {
+                if (throwable != null) {
+                    System.out.println("---> Exception: " + throwable);
+                } else {
+                    System.out.println("---> individualResponse : " + new String(bytes));
+                }
+            });
         });
 
-        return input;
+        return "handleParallelInvocation | " + input;
     }
 
     public <X> FlowFuture<List<FlowFuture<X>>> allResults(FlowFuture<X>... flows) {
         return Flows.currentFlow().allOf(flows).thenApply(ignored -> Arrays.asList(flows));
     }
+
 }
