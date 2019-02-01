@@ -55,7 +55,7 @@ public class FlowFunction implements Serializable{
 
         List<FlowFuture<byte[]>> listFlows = allResults(stageA, stageB, stageC, stageD).get();
 
-        listFlows.forEach(flowFuture -> {
+        /*listFlows.forEach(flowFuture -> {
             flowFuture.whenComplete((bytes, throwable) -> {
                 if (throwable != null) {
                     System.out.println("---> Exception: " + throwable);
@@ -63,9 +63,19 @@ public class FlowFunction implements Serializable{
                     System.out.println("---> individualResponse : " + new String(bytes));
                 }
             });
-        });
+        });*/
 
-        return "handleParallelInvocation | " + input;
+        List<String> results = new ArrayList<>();
+
+        for (FlowFuture<byte[]> flowFuture : listFlows) {
+            FlowFuture<String> result = flowFuture.thenApply((bytes) -> {
+                return new String(bytes);
+            });
+            results.add(result.get());
+        }
+
+
+        return "handleParallelInvocation : " + results.toString();
     }
 
     public <X> FlowFuture<List<FlowFuture<X>>> allResults(FlowFuture<X>... flows) {
