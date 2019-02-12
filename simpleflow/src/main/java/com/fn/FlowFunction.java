@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.fnproject.fn.api.Headers.emptyHeaders;
 import static com.fnproject.fn.api.flow.HttpMethod.POST;
@@ -36,19 +35,19 @@ public class FlowFunction implements Serializable{
 
         Flow flow = Flows.currentFlow();
 
-        FlowFuture<Result> doubled =  flow
-                .completedValue(new Result(input))
-                .thenApply(result -> {
-                    return new Result(result.getValue() * 2);
+        FlowFuture<Payload> doubled =  flow
+                .completedValue(new Payload(input))
+                .thenApply(payload -> {
+                    return new Payload(payload.getValue() * 2);
                 })
-                .thenApply(result -> {
-                    FlowFuture<Result> x = flow.invokeFunction(funcDouble, result, Result.class);
+                .thenApply(payload -> {
+                    FlowFuture<Payload> x = flow.invokeFunction(funcDouble, payload, Payload.class);
                     return x.get();
                 });
 
         return doubled.get().getValue();
     }
-    
+
 
     public String handleParallelInvocation(String input) {
 

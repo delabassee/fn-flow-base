@@ -1,8 +1,0 @@
-schema_version: 20180708
-name: test
-version: 0.0.1
-runtime: java
-build_image: fnproject/fn-java-fdk-build:jdk11-1.0.85
-run_image: fnproject/fn-java-fdk:jre11-1.0.85
-cmd: com.example.fn.HelloFunction::handleRequest
-format: http-stream

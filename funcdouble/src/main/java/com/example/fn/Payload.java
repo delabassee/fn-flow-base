@@ -3,15 +3,15 @@ package com.example.fn;
 import java.io.Serializable;
 
 
-class Result implements Serializable {
+class Payload implements Serializable {
 
     private int value;
 
-    public Result(int value) {
+    public Payload(int value) {
         this.value = value;
     }
 
-    public Result() {
+    public Payload() {
     }
 
     public int getValue() {
