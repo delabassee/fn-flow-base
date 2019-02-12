@@ -30,6 +30,26 @@ public class FlowFunction implements Serializable{
     }
 
 
+    public int handleDouble(Integer input) {
+
+        final String funcDouble = "01D3GZKCR9NG8G00GZJ0000028";
+
+        Flow flow = Flows.currentFlow();
+
+        FlowFuture<Result> doubled =  flow
+                .completedValue(new Result(input))
+                .thenApply(result -> {
+                    return new Result(result.getValue() * 2);
+                })
+                .thenApply(result -> {
+                    FlowFuture<Result> x = flow.invokeFunction(funcDouble, result, Result.class);
+                    return x.get();
+                });
+
+        return doubled.get().getValue();
+    }
+    
+
     public String handleParallelInvocation(String input) {
 
         final String funcA = "01D2MWS1E1NG8G00GZJ0000001";
