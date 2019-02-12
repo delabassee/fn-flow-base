@@ -36,13 +36,16 @@ public class FlowFunction implements Serializable{
         Flow flow = Flows.currentFlow();
 
         FlowFuture<Payload> doubled =  flow
-                .completedValue(new Payload(input))
+                .supply(()-> new Payload(input))
                 .thenApply(payload -> {
                     return new Payload(payload.getValue() * 2);
                 })
                 .thenApply(payload -> {
                     FlowFuture<Payload> x = flow.invokeFunction(funcDouble, payload, Payload.class);
                     return x.get();
+                }).exceptionally(throwable -> {
+                    System.out.println("handleDouble | Function error: " + throwable);
+                    return null;// ouch!
                 });
 
         return doubled.get().getValue();
