@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static com.fnproject.fn.api.Headers.emptyHeaders;
 import static com.fnproject.fn.api.flow.HttpMethod.POST;
@@ -43,12 +44,13 @@ public class FlowFunction implements Serializable{
                 .thenApply(payload -> {
                     FlowFuture<Payload> x = flow.invokeFunction(funcDouble, payload, Payload.class);
                     return x.get();
-                }).exceptionally(throwable -> {
-                    System.out.println("handleDouble | Function error: " + throwable);
-                    return null;// ouch!
-                });
+                }).exceptionally(t -> null);
 
-        return doubled.get().getValue();
+        if (doubled.get()!=null) {
+            return doubled.get().getValue();
+        } else {
+            return 0; // -> error
+        }
     }
 
 
