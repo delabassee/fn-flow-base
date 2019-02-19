@@ -5,11 +5,19 @@ Minimalistic project to kick-start a Fn Flow demo. See [Flow 101 tutorial](https
  
 ```fn start```   
 
+* Make sure you have an applicaton where you can deploy your function(s) to.
+
+```
+fn create app myapp
+```
+
 * Start the Flow Server and the (optional) UI.
 
 ```./flow_setup.sh``` 
 
 This will also set the *COMPLETER_BASE_URL* for the *"myapp"* App via `fn config app myapp COMPLETER_BASE_URL "http://172.17.0.3:8081"`
+
+NB: `./sart.sh` start the Flow Server, the Flow UI and the Saga Dashboard.
 
 * Create and deploy a function that will be invoked from the Flow function.
 
